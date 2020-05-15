@@ -1,0 +1,282 @@
+<skin>
+<!-- vfd-Skin v+solo4k Schermbecker -->
+<colors>
+<color name="Background" value="#000000" />
+<color name="windowBackground" value="#000000" />
+<color name="LCDBackground" value="#000000" />
+</colors>
+<fonts>
+<font filename="BoldCondensed.ttf" name="LCD" scale="100"/>
+<font filename="MyriadPro-Regular.otf" name="RegularLCD" scale="100" />
+<font filename="MyriadPro-Semibold.otf" name="SemiboldLCD" scale="100" />
+<font filename="MyriadPro-SemiboldIt.otf" name="SemiboldLCDit" scale="100" />
+<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
+</fonts>
+
+<screen name="LCDClockTemplate">
+<ePixmap pixmap="icon_time.png" position="347,19" size="24,24" alphatest="blend" />
+<widget source="global.CurrentTime" render="Label" position="380,16" size="131,29" font="RegularLCD; 34" halign="left" backgroundColor="LCDBackground">
+<convert type="ClockToText">Format:%H:%M</convert>
+</widget>
+</screen>
+<screen name="LCDIconTemplate">
+<widget source="session.RecordState" render="FixedLabel" position="20,17" zPosition="3" size="44,29" text=" ">
+<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+<convert type="ConditionalShowHide">Blink</convert>
+</widget>
+<widget source="session.RecordState" render="Pixmap" pixmap="icon_REC_red.png" position="215,33" size="49,29" alphatest="blend">
+<convert type="ConditionalShowHide" />
+</widget>
+<widget source="session.CurrentService" render="Pixmap" pixmap="icon_CRYPT_orange.png" position="80,17" size="40,29" alphatest="blend">
+<convert type="ServiceInfo">IsCrypted</convert>
+<convert type="ConditionalShowHide" />
+</widget>
+<widget source="session.CurrentService" render="Pixmap" pixmap="icon_TELETEXT_yellow.png" position="131,14" size="44,34" alphatest="blend">
+<convert type="ServiceInfo">HasTelext</convert>
+<convert type="ConditionalShowHide" />
+</widget>
+<widget source="session.CurrentService" render="Pixmap" pixmap="icon_16x9_blue.png" position="186,14" size="44,34" alphatest="blend">
+<convert type="ServiceInfo">IsWidescreen</convert>
+<convert type="ConditionalShowHide" />
+</widget>
+<widget source="session.CurrentService" render="Pixmap" pixmap="icon_DOLBY_green.png" position="241,17" size="45,29" alphatest="blend">
+<convert type="ServiceInfo">IsMultichannel</convert>
+<convert type="ConditionalShowHide" />
+</widget>
+</screen>
+
+<!-- InfoBar -->
+<screen name="InfoBarSummary" position="0,0" size="480,320"  >
+<widget source="global.CurrentTime" render="Label" position="257,26" size="209,86" font="LCD; 86" halign="right" valign="center">
+<convert type="ClockToText">Format:%H:%M</convert>
+</widget>
+<widget source="session.RecordState" render="FixedLabel" position="420,10" zPosition="4" size="59,26" text=" ">
+<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+<convert type="ConditionalShowHide">Blink</convert>
+</widget>
+<widget source="session.RecordState" render="Pixmap" pixmap="icon_REC_red.png" zPosition="3" position="420,10" size="59,26" alphatest="blend">
+<convert type="ConditionalShowHide" />
+</widget>
+<widget source="session.CurrentService" render="Picon" position="11,26" size="215,140" zPosition="4" transparent="1" alphatest="blend">
+<convert type="ServiceName">Reference</convert>
+</widget>
+
+
+<widget position="142,270" render="Progress" size="209,17" source="session.Event_Now" transparent="1" zPosition="5" borderWidth="1" borderColor="un282b24" backgroundColor="border1" pixmap="/usr/share/enigma2/display/skins_lcd_Blanco/progress-evento.png">
+  <convert type="EventTime">Progress</convert>
+</widget>
+
+<widget source="session.Event_Now" render="RunningText" options="movetype=running,startpoint=0,direction=left,steptime=80,repeat=3,always=0,oneshot=1,startdelay=6000,wrap" position="17,186" size="443,63" font="LCD; 53" halign="left" valign="top">
+<convert type="EventName">Name</convert>
+</widget>
+<widget source="session.Event_Now" render="Label" noWrap="1" position="17,256" size="200,50" font="LCD; 53" halign="left" valign="top">
+<convert type="EventTime">StartTime</convert>
+<convert type="ClockToText">Default</convert>
+</widget>
+<widget source="session.Event_Now" render="Label" noWrap="1" position="363,256" size="115,50" font="LCD; 53" halign="right" valign="top">
+<convert type="EventTime">EndTime</convert>
+<convert type="ClockToText">Default</convert>
+</widget>
+
+<widget source="session.Event_Now" render="Label" position="227,113" foregroundColor="#0ffffff" size="233,60" font="LCD; 53" halign="right" valign="center">
+<convert type="EventTime">Remaining</convert>
+<convert type="RemainingToText">InMinutes</convert>
+</widget>
+<eLabel name="progress" position="142,280" size="209,0" backgroundColor="#000000" />
+<widget source="session.Event_Now" render="Progress" position="142,280" size="209,17" borderWidth="3" borderColor="#000000" foregroundColor="#000000" zPosition="1" transparent="1">
+<convert type="EventTime">Progress</convert>
+</widget>
+</screen>
+
+<!-- EMCMoviePlayer -->
+<screen name="EMCMoviePlayerSummary" position="0,0" size="480,320" >
+<widget position="11,26" render="Cover" size="215,140" source="session.CurrentService" zPosition="5" transparent="0" alphatest="off" />
+<widget source="global.CurrentTime" render="Label" position="257,26" size="209,80" font="LCD; 86" halign="right" valign="center">
+<convert type="ClockToText">Format:%H:%M</convert>
+</widget>
+<widget source="session.RecordState" render="FixedLabel" position="227,33" zPosition="4" size="59,26" text=" ">
+<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+<convert type="ConditionalShowHide">Blink</convert>
+</widget>
+<widget source="session.RecordState" render="Pixmap" pixmap="icon_REC_red.png" zPosition="3" position="227,33" size="59,26" alphatest="blend">
+<convert type="ConditionalShowHide" />
+</widget>
+<widget source="session.CurrentService" render="Picon" position="11,26" size="215,140" zPosition="4" transparent="1" alphatest="blend">
+<convert type="MovieBarInfo">Reference</convert>
+</widget>
+
+<eLabel text=" " position="0,180" size="480,4" font="LCD; 10" backgroundColor="#00777777" transparent="0" zPosition="1" />
+
+<widget source="session.CurrentService" render="RollerCharLCDLong" noWrap="1" position="17,186" size="443,63" font="LCD; 53" halign="left" valign="top">
+<convert type="ServiceName">Name</convert>
+</widget>
+<widget source="session.CurrentService" render="Label" position="227,113" foregroundColor="#001BA1E3" size="233,60" font="LCD; 53" halign="right" valign="center">
+<convert type="ServicePosition">EndTime,ShowHours,ShowNoSeconds</convert>
+</widget>
+<widget source="session.CurrentService" render="Label" noWrap="1" position="17,256" size="107,53" font="LCD; 53" halign="right" valign="top">
+<convert type="ServicePosition">Length,ShowHours,ShowNoSeconds</convert>
+</widget>
+<widget source="session.CurrentService" render="Label" noWrap="1" position="359,256" size="107,53" font="LCD; 53" halign="right" valign="top">
+<convert type="ServicePosition">Remaining,Negate,Length</convert>
+</widget>
+<eLabel name="progress" position="137,280" size="209,0" backgroundColor="#00FFFFFF" />
+<widget source="session.CurrentService" render="Progress" position="137,276" size="209,17" borderWidth="3" borderColor="#00ffffff" foregroundColor="#001BA1E3" zPosition="1" transparent="1">
+<convert type="ServicePosition">Position</convert>
+</widget>
+</screen>
+
+<!-- EMCSelection_summary -->
+<screen name="EMCSelection_summary" position="0,0" size="480,320"  >
+<widget source="parent.Service" render="Label" position="11,93" size="443,213" font="LCD; 40" halign="left" valign="top">
+<convert type="ServiceName">Name</convert>
+</widget>
+<widget source="parent.Service" render="Label" position="227,26" foregroundColor="#001BA1E3" size="233,60" font="LCD; 53" halign="right" valign="top">
+<convert type="ServiceTime">Duration</convert>
+<convert type="ClockToText">InMinutes</convert>
+</widget>
+</screen>
+
+<!-- MoviePlayer_SimplePlayerMP -->
+<screen name="InfoBarMoviePlayerSummary" position="0,0" size="480,320" >
+<widget position="11,26" render="Cover" size="215,140" source="session.CurrentService" zPosition="5" transparent="0" alphatest="off" />
+<widget source="global.CurrentTime" render="Label" position="257,26" size="209,80" font="LCD; 86" halign="right" valign="center">
+<convert type="ClockToText">Format:%H:%M</convert>
+</widget>
+<widget source="session.RecordState" render="FixedLabel" position="227,33" zPosition="4" size="59,26" text=" ">
+<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+<convert type="ConditionalShowHide">Blink</convert>
+</widget>
+<widget source="session.RecordState" render="Pixmap" pixmap="icon_REC_red.png" zPosition="3" position="227,33" size="59,26" alphatest="blend">
+<convert type="ConditionalShowHide" />
+</widget>
+<widget source="session.CurrentService" render="Picon" position="11,26" size="215,140" zPosition="4" transparent="1" alphatest="blend">
+<convert type="MovieBarInfo">Reference</convert>
+</widget>
+
+<eLabel text=" " position="0,180" size="480,4" font="LCD; 10" backgroundColor="#00777777" transparent="0" zPosition="1" />
+
+<widget source="session.CurrentService" render="RollerCharLCDLong" noWrap="1" position="17,186" size="443,63" font="LCD; 53" halign="left" valign="top">
+<convert type="ServiceName">Name</convert>
+</widget>
+<widget source="session.CurrentService" render="Label" position="227,113" foregroundColor="#001BA1E3" size="233,60" font="LCD; 53" halign="right" valign="center">
+<convert type="ServicePosition">EndTime,ShowHours,ShowNoSeconds</convert>
+</widget>
+<widget source="session.CurrentService" render="Label" noWrap="1" position="17,256" size="107,53" font="LCD; 53" halign="right" valign="top">
+<convert type="ServicePosition">Length,ShowHours,ShowNoSeconds</convert>
+</widget>
+<widget source="session.CurrentService" render="Label" noWrap="1" position="359,256" size="107,53" font="LCD; 53" halign="right" valign="top">
+<convert type="ServicePosition">Remaining,Negate,Length</convert>
+</widget>
+<eLabel name="progress" position="137,280" size="209,0" backgroundColor="#00FFFFFF" />
+<widget source="session.CurrentService" render="Progress" position="137,276" size="209,17" borderWidth="3" borderColor="#00ffffff" foregroundColor="#001BA1E3" zPosition="1" transparent="1">
+<convert type="ServicePosition">Position</convert>
+</widget>
+</screen>
+
+<!-- standby -->
+<screen name="StandbySummary" position="0,0" size="480,320">
+<widget source="global.CurrentTime" render="Label" position="0,5" size="480,70" font="FdLcD;50" foregroundColor="#FFFF00" halign="center" valign="center" noWrap="1">
+<convert type="ClockToText">Format:%d.%m.%Y</convert>
+</widget>
+<widget source="global.CurrentTime" render="Label" position="center,center" size="225,100" font="FdLcD;85" halign="center" noWrap="1">
+<convert type="ClockToText">Format:%H:%M</convert>
+</widget>
+</screen>
+
+<!-- ChannelSelection_summary -->
+<screen name="ChannelSelection_summary" position="0,0" size="480,320" >
+<widget source="global.CurrentTime" render="Label" position="257,26" size="209,80" font="LCD; 86" halign="right" valign="center">
+<convert type="ClockToText">Format:%H:%M</convert>
+</widget>
+<widget source="session.RecordState" render="FixedLabel" position="227,33" zPosition="4" size="59,26" text=" ">
+<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+<convert type="ConditionalShowHide">Blink</convert>
+</widget>
+<widget source="session.RecordState" render="Pixmap" pixmap="icon_REC_red.png" zPosition="3" position="227,33" size="59,26" alphatest="blend">
+<convert type="ConditionalShowHide" />
+</widget>
+<widget source="parent.ServiceEvent" render="Picon" position="11,26" size="215,140" zPosition="4" transparent="1" alphatest="blend">
+<convert type="ServiceName">Reference</convert>
+</widget>
+
+<eLabel text=" " position="0,180" size="480,4" font="LCD; 10" backgroundColor="#00777777" transparent="0" zPosition="1" />
+
+<widget source="parent.ServiceEvent" render="RollerCharLCDLong" noWrap="1" position="17,186" size="443,63" font="LCD; 53" halign="left" valign="top">
+<convert type="EventName">Name</convert>
+</widget>
+<widget source="parent.ServiceEvent" render="Label" noWrap="1" position="17,256" size="107,53" font="LCD; 53" halign="left" valign="top">
+<convert type="EventTime">StartTime</convert>
+<convert type="ClockToText">Default</convert>
+</widget>
+<widget source="parent.ServiceEvent" render="Label" noWrap="1" position="359,256" size="107,53" font="LCD; 53" halign="right" valign="top">
+<convert type="EventTime">EndTime</convert>
+<convert type="ClockToText">Default</convert>
+</widget>
+<widget source="parent.ServiceEvent" render="Label" position="227,113" foregroundColor="#001BA1E3" size="233,60" font="LCD; 53" halign="right" valign="center">
+<convert type="EventTime">Remaining</convert>
+<convert type="RemainingToText">InMinutes</convert>
+</widget>
+<eLabel name="progress" position="137,280" size="209,0" backgroundColor="#00FFFFFF" />
+<widget source="parent.ServiceEvent" render="Progress" position="137,276" size="209,17" borderWidth="3" borderColor="#00ffffff" foregroundColor="#001BA1E3" zPosition="1" transparent="1">
+<convert type="EventTime">Progress</convert>
+</widget>
+</screen>
+
+<screen name="ChoiceBox_summary" position="0,0" size="480,320" >
+<widget source="parent.summary_list" render="Label" position="26,26" size="431,266" font="RegularLCD; 38" valign="top" />
+</screen>
+
+<screen name="MessageBox_summary" position="0,0" size="480,320" >
+<widget source="parent.Text" render="Label" position="17,13" size="443,200" font="RegularLCD; 38" halign="center" valign="center" />
+<widget source="parent.selectedChoice" render="Label" position="119,213" size="239,40" font="RegularLCD; 38" halign="center" valign="center" />
+</screen>
+
+<screen name="MenuSummary" position="0,0" size="480,320" >
+<panel name="LCDIconTemplate" />
+<panel name="LCDClockTemplate" />
+<widget source="parent.title" render="Label" position="17,86" size="443,73" font="SemiboldLCD; 42" halign="center" valign="center" backgroundColor="LCDBackground" />
+<widget source="parent.menu" render="Label" position="17,160" size="443,120" font="RegularLCD; 46" halign="center" valign="center" backgroundColor="LCDBackground">
+<convert type="StringListSelection" />
+</widget>
+</screen>
+
+<screen name="ServiceScanSummary" position="0,0" size="480,320" >
+<widget name="Title" position="23,13" size="431,93" font="RegularLCD; 50" transparent="1" backgroundColor="LCDBackground" />
+<widget name="Service" position="23,120" size="431,140" font="RegularLCD; 38" transparent="1" backgroundColor="LCDBackground" />
+<widget name="scan_progress" position="56,253" zPosition="1" borderWidth="3" size="365,40" backgroundColor="LCDBackground" />
+</screen>
+
+<screen name="SetupSummary" position="0,0" size="480,320" >
+<panel name="LCDIconTemplate" />
+<panel name="LCDClockTemplate" />
+<widget source="SetupTitle" render="Label" position="17,73" size="431,60" font="SemiboldLCD; 46" halign="center" backgroundColor="LCDBackground" />
+<widget source="SetupEntry" render="Label" position="17,133" size="431,120" font="SemiboldLCD; 42" halign="center" backgroundColor="LCDBackground" />
+<widget source="SetupValue" render="Label" position="17,253" size="431,60" font="RegularLCD; 35" halign="center" backgroundColor="LCDBackground" />
+</screen>
+
+<screen name="SimpleSummary" position="0,0" size="480,320" >
+<panel name="LCDClockTemplate" />
+<panel name="LCDIconTemplate" />
+<widget source="parent.Title" render="Label" position="26,73" size="425,180" font="SemiboldLCD; 46" halign="center" valign="center" backgroundColor="LCDBackground" />
+</screen>
+
+<screen name="MediaPlayerLCDScreen" position="0,0" size="480,320" >
+<widget name="text1" position="20,13" size="437,156" font="RegularLCD; 42"/>
+<widget name="text3" position="20,176" size="437,60" font="RegularLCD; 26"/>
+<widget name="text4" position="20,236" size="437,60" font="RegularLCD; 26"/>
+</screen>
+
+<screen name="WizardSummary" position="0,0" size="480,320" >
+<widget source="text" render="Label" position="23,13" size="404,80" font="RegularLCD; 48" transparent="1" backgroundColor="LCDBackground" />
+<widget source="parent.list" render="Label" position="23,106" size="431,220" font="RegularLCD; 50">
+<convert type="StringListSelection" />
+</widget>
+</screen>
+
+<screen name="PluginBrowserSummary" position="0,0" size="480,320" >
+<widget source="entry" render="Label" position="23,26" size="431,133" font="SemiboldLCD; 40" halign="center" valign="center" />
+<eLabel position="0,161" size="480,1" backgroundColor="#f0f0f0" />
+<widget source="desc" render="Label" position="23,173" size="431,133" font="RegularLCD; 40" halign="center" valign="center" />
+</screen>
+
+</skin>

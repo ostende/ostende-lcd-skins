@@ -1,0 +1,16 @@
+<default>
+	<prerequisites>
+		<tag type="Display" />
+	</prerequisites>
+	<info>
+		<author>Anko</author>
+		<name>LCD Azul</name>
+		<packagename>enigma2-display-openspa-lcd_blanco</packagename>
+		<shortdescription>Custom display skin for LCD</shortdescription>
+		<description>Custom display skin for LCD</description>
+	</info>
+
+	<files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-display-openspa-lcd_blanco" />
+	</files>
+</default>

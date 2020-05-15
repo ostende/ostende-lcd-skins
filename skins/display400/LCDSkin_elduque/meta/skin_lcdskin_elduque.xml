@@ -1,0 +1,16 @@
+<default>
+	<prerequisites>
+		<tag type="Display" />
+	</prerequisites>
+	<info>
+		<author>Elduque</author>
+		<name>LCD Skin elduque</name>
+		<packagename>enigma2-display-openspa-lcdskin_elduque</packagename>
+		<shortdescription>Custom display skin for LCD</shortdescription>
+		<description>Custom display skin for LCD</description>
+	</info>
+
+	<files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-display-openspa-lcdskin_elduque" />
+	</files>
+</default>
