@@ -265,6 +265,8 @@ skins/display400/OE-A_LCDSkin_13/Makefile
 skins/display400/OE-A_LCDSkin_13/meta/Makefile
 skins/display400/LCDSkin_elduque/Makefile
 skins/display400/LCDSkin_elduque/meta/Makefile
+skins/display400/Ostende-LCD-Skin_1/Makefile
+skins/display400/Ostende-LCD-Skin_1/meta/Makefile
 skins/display480/Makefile
 skins/display480/OE-A_LCDSkin_1/Makefile
 skins/display480/OE-A_LCDSkin_1/meta/Makefile

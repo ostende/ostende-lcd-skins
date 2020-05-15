@@ -1,0 +1,159 @@
+	<!-- Color LCD screen (main) ServiceName+EventName(RunningText)+Picon+Weather+ClockToText -->
+<screen name="InfoBarSummary" position="0,0" size="400,240" id="3">
+    <ePixmap position="0,0" size="400,240" pixmap="~/standby.png" zPosition="-1"/>
+	<widget source="session.CurrentService" foregroundColor="#00f0a30a" render="Label" position="0,0" size="400,48" font="TXT;45" halign="center" valign="center" transparent="1">
+		<convert type="ServiceName">Name</convert>
+	</widget>
+	<widget source="session.Event_Now" render="extRunningText" position="8,45" size="400,70" font="TXT;45" halign="left" valign="center" transparent="1" zPosition="1" options="movetype=swimming,direction=left,repeat=4,steptime=80,startdelay=5000,noWrap">
+   		  <convert type="EventName">Name</convert>
+    </widget>
+	<widget source="session.Event_Now" render="Progress" position="8,105" size="384,15" borderWidth="1" pixmap="~/progress4.png" transparent="1">
+            <convert type="EventTime">Progress</convert>
+        </widget>
+	<widget source="session.CurrentService" render="Picon" position="0,125" zPosition="1" size="220,108" blend="on">
+		<convert type="ServiceName">Reference</convert>
+	</widget>
+	<!-- Weather Info  -->
+    <widget backgroundColor="background" font="TXT;28" foregroundColor="ltbluette" position="220,163" noWrap="1" render="extRunningText" size="200,40" source="session.MSNWeather" transparent="1" halign="left" valign="top" zPosition="3" options="movetype=swimming,startpoint=0,direction=left,startdelay=2000,steptime=90,always=0,repeat=2,oneshot=1,nowrap">
+        <convert type="MSNWeather">city</convert>
+    </widget>
+    <widget blend="on" position="278,122" render="MSNWeatherPixmap" size="55,55" source="session.MSNWeather" transparent="1" zPosition="5">
+        <convert type="MSNWeather">weathericon,current</convert>
+    </widget>
+    <widget backgroundColor="background" font="TXT;28" foregroundColor="white" halign="center" noWrap="1" position="315,125" render="Label" size="100,40" source="session.MSNWeather" transparent="1" valign="center" zPosition="3">
+        <convert type="MSNWeather">temperature_current</convert>
+    </widget>
+	<widget source="global.CurrentTime" foregroundColor="#00f3bc6e" render="Label" position="200,155" size="195,120" font="TXT;50" halign="center" valign="center" transparent="1">
+		<convert type="ClockToText">Format:%H:%M:</convert>
+	</widget>
+	<widget source="global.CurrentTime" foregroundColor="#00f3bc6e" render="Label" position="330,182" size="100,80" font="TXT;30" halign="center" valign="center" transparent="1">
+		<convert type="ClockToText">Format:%S</convert>
+	</widget>
+	<widget source="session.RecordState" render="FixedLabel" text="REC" position="200,190" size="200,50" font="TXT;42" halign="right" zPosition="-2" foregroundColor="#FF0000" >
+		  <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+		  <convert type="ConditionalShowHide">Blink</convert>
+	</widget>
+</screen>
+
+<!--StandbySummary-->
+<screen name="StandbySummary" position="0,0" size="400,240" id="3">
+<ePixmap position="0,0" size="400,240" pixmap="~/standby.png" zPosition="1"/>
+	<widget source="global.CurrentTime" render="Label" position="2,25" size="396,110" font="TXT;80" valign="top" halign="center" foregroundColor="white" transparent="1" zPosition="2">
+		<convert type="ClockToText">Format:%H:%M:%S</convert>
+	</widget>
+	<widget source="session.RecordState" render="FixedLabel" text="Aufnahme" position="0,140" size="400,60" font="TXT;60" halign="center" zPosition="3" foregroundColor="#FF0000" >
+		<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+		<convert type="ConditionalShowHide">Blink</convert>
+	 </widget>
+	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="TXT;1" halign="left" valign="top" foregroundColor="white" >
+		  <convert type="ConditionalShowHide">Blink</convert>
+	</widget>
+	<widget font="TXT;55" halign="center" position="0,150" render="Label" size="400,60" source="global.CurrentTime" transparent="1" zPosition="2">
+		<convert type="DEDateToText">Format:%d- %b- %Y</convert>
+	 </widget>
+</screen>
+
+<!--ChannelSelection_summary-->
+<screen name="ChannelSelection_summary" position="0,0" size="400,240" id="3">
+    <ePixmap position="0,0" size="400,240" pixmap="~/back.png" zPosition="-1"/>
+	<widget source="parent.ServiceEvent" render="Picon" position="90,50" zPosition="1" size="220,132" blend="on">
+		<convert type="ServiceName">Reference</convert>
+	</widget>
+</screen>
+
+<!--MenuSummary-->
+<screen name="MenuSummary" position="0,0" size="400,240" id="3">
+    <ePixmap position="0,0" size="400,240" pixmap="~/standby.png" zPosition="-1"/>
+	<widget source="parent.title" render="Label" position="2,15" size="396,52" font="TXT;52" halign="center" transparent="1"  foregroundColor="ltbluette" />
+    <widget source="parent.menu" render="Label" position="2,95" size="396,100" font="TXT;52" halign="center" transparent="1">
+		  <convert type="StringListSelection"/>
+	</widget>
+	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="TXT;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">
+		  <convert type="ConditionalShowHide">Blink</convert>
+	</widget>
+</screen>
+<!-- PluginBrowserSummary -->
+<screen name="PluginBrowserSummary" position="0,0" size="400,240" id="3">
+	<ePixmap position="0,0" size="400,240" pixmap="~/standby.png" zPosition="-1"/>
+	<widget source="parent.pluginlist" render="Label" position="2,10" size="396,104" font="TXT;52" halign="center" transparent="1" foregroundColor="ltbluette">
+		<convert type="StringListSelection">1</convert>
+	</widget>
+	<widget source="parent.pluginlist" render="Label" position="2,110" size="396,104" font="TXT;52" halign="center" transparent="1" >
+		<convert type="StringListSelection">2</convert>
+	</widget>
+</screen>
+<!-- About Summary -->
+<screen name="About_summary" position="0,0" size="400,240" id="3">
+	<ePixmap position="0,0" size="400,240" pixmap="~/standby.png" zPosition="-1"/>
+	<widget source="parent.Title" render="Label" position="2,10" size="396,104" font="TXT;52" halign="center" transparent="1" foregroundColor="ltbluette" />
+	<widget source="parent.Model" render="Label" position="2,110" size="396,100" font="TXT;52" halign="center" transparent="1" >
+		<convert type="DreamboxModel" />
+	</widget>
+</screen>
+<!-- MediaBrowser -->
+<screen name="MediaBrowser_summary" position="0,0" size="400,240" id="3">
+	<widget source="parent.summary_list" render="Label" position="2,110" size="396,104" font="TXT;52" halign="center" transparent="1" />
+</screen>
+<!-- NetworkServiceConfig -->
+<screen name="NetworkServiceConfig_summary" position="0,0" size="400,240" id="3">
+	<ePixmap position="0,0" size="400,240" pixmap="~/standby.png" zPosition="-1"/>
+	<widget source="parent.Title" render="Label" position="2,10" size="396,104" font="TXT;52" halign="center" transparent="1" foregroundColor="ltbluette" />
+	<widget source="parent.summary_list" render="Label" position="2,110" size="396,104" font="TXT;52" halign="center" transparent="1" />
+</screen>
+<!-- ChoiceBox -->
+<screen name="ChoiceBox_summary" position="0,0" size="400,240" id="3">
+	<ePixmap position="0,0" size="400,240" pixmap="~/standby.png" zPosition="-1"/>
+	<widget source="parent.summary_list" render="Label" position="2,10" size="396,200" font="TXT;45" halign="center" transparent="1" />
+</screen>
+<!-- MessageBox -->
+<screen name="MessageBox_summary" position="0,0" size="400,240" id="3">
+	<ePixmap position="0,0" size="400,240" pixmap="~/standby.png" zPosition="-1"/>
+	<widget source="parent.Text" render="Label" position="2,10" size="396,104" font="TXT;52" halign="center" transparent="1" foregroundColor="ltbluette" />
+	<widget source="parent.selectedChoice" render="Label" position="2,110" size="396,104" font="TXT;52" halign="center" transparent="1" />
+</screen>
+<!-- MediaCenterMenuSummary -->
+<screen name="MediaCenterMenuSummary" position="0,0" size="400,240" id="3" >
+	<ePixmap position="0,0" size="400,240" pixmap="~/standby.png" zPosition="-1"/>
+	<widget source="Title" render="Label" position="12,10" size="386,104" font="TXT;52" halign="center" transparent="1" foregroundColor="ltbluette"  />
+	<widget source="parent.menulist" render="Label" position="2,110" size="386,104" font="TXT;52" halign="center" transparent="1"  >
+		<convert type="StringListSelection" />
+	</widget>
+</screen>
+<!-- MediaCenterLCDScreen -->
+<screen name="MediaCenterLCDScreen" position="0,0" size="400,240" id="3" >
+	<ePixmap position="0,0" size="400,240" pixmap="~/movie.png" zPosition="-1"/>
+	<eLabel text="Media Center Video Player" position="2,120" size="386,104" font="TXT;52" halign="center" transparent="1" />
+	<widget source="global.CurrentTime" foregroundColor="ltbluette2" render="Label" position="213,35" size="195,120" font="TXT;70" halign="center" valign="center" transparent="1">
+		<convert type="ClockToText">Format:%H:%M</convert>
+	</widget>
+	<widget source="global.CurrentTime" foregroundColor="ltbluette2" render="Label" position="225,-20" size="195,120" font="TXT;38" halign="top" valign="center" transparent="1">
+		<convert type="ClockToText">Format:%d.%m.%Y</convert>
+	</widget>
+	<widget source="session.RecordState" render="FixedLabel" text="Record" position="200,195" size="200,50" font="TXT;42" halign="right" zPosition="-2" foregroundColor="red" >
+		<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+		<convert type="ConditionalShowHide">Blink</convert>
+	</widget>
+</screen>
+<!-- MoviePlayer_summary -->
+<screen name="MoviePlayer_summary" position="0,0" size="400,240" id="3" >
+	<ePixmap position="0,0" size="400,240" pixmap="~/movie.png" zPosition="-1"/>
+	<widget source="session.CurrentService" render="extRunningText" position="0,123" size="400,60" font="TXT;60" halign="left" valign="center" transparent="1" zPosition="1" options="movetype=swimming,direction=left,repeat=4,steptime=80,startdelay=5000,noWrap">
+   		  <convert type="ServiceName">Name</convert>
+    </widget>
+	<widget source="session.CurrentService" render="Progress" position="8,185" size="384,15" borderWidth="1" pixmap="~/yellow_bar.png" transparent="1" >
+		<convert type="ServicePosition">Position</convert>
+	</widget>
+	<widget source="global.CurrentTime" foregroundColor="ltbluette2" render="Label" position="213,35" size="195,120" font="TXT;70" halign="center" valign="center" transparent="1">
+		<convert type="ClockToText">Format:%H:%M</convert>
+	</widget>
+	<widget source="global.CurrentTime" foregroundColor="ltbluette2" render="Label" position="225,-20" size="195,120" font="TXT;38" halign="top" valign="center" transparent="1">
+		<convert type="ClockToText">Format:%d.%m.%Y</convert>
+	</widget>
+	<widget source="session.CurrentService" render="Label" position="200,195" zPosition="1" size="200,50" font="TXT;42" halign="right" transparent="1" foregroundColor="yellow" >
+		  <convert type="ServicePosition">Remaining,Negate</convert>
+	</widget>
+	<widget source="session.RecordState" render="FixedLabel" text="Record" position="200,195" size="200,50" font="TXT;42" halign="right" zPosition="-2" foregroundColor="red" >
+		<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+		<convert type="ConditionalShowHide">Blink</convert>
+	</widget>
+</screen>

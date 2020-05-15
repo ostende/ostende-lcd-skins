@@ -1,0 +1,16 @@
+<default>
+	<prerequisites>
+		<tag type="Display" />
+	</prerequisites>
+	<info>
+		<author>Ostende</author>
+		<name>Ostende LCD Skin1 Dm920</name>
+		<packagename>enigma2-display-ostende-lcdskin_1</packagename>
+		<shortdescription>Full Custom display skin for LCD</shortdescription>
+		<description>Full Custom display skin for LCD</description>
+	</info>
+
+	<files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-display-ostende-lcdskin_1" />
+	</files>
+</default>
